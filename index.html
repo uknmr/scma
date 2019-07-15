@@ -1,68 +1,92 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-    <link rel="manifest" href="manifest.json">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-    <title>スクマ！</title>
+  <link rel="manifest" href="manifest.json">
 
-    <style>
-      @font-face {
-        font-family: 'Nikukyu';
-        font-style: normal;
-        font-weight: 400;
-        font-display: swap;
-        unicode-range: U+30B9, U+30AF, U+30DE;
-        src: url("https://fonts.gstatic.com/ea/nikukyu/v1/Nikukyu-Regular.eot");
-        src: url("https://fonts.gstatic.com/ea/nikukyu/v1/Nikukyu-Regular.eot?#iefix") format('embedded-opentype'), url("https://fonts.gstatic.com/ea/nikukyu/v1/Nikukyu-Regular.woff2") format('woff2'), url("https://fonts.gstatic.com/ea/nikukyu/v1/Nikukyu-Regular.woff") format('woff'), url("https://fonts.gstatic.com/ea/nikukyu/v1/Nikukyu-Regular.ttf") format('truetype');
+  <title>スクマ！</title>
+
+  <style>
+    @font-face {
+      font-family: 'Nikukyu';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      unicode-range: U+30B9, U+30AF, U+30DE;
+      src: url("https://fonts.gstatic.com/ea/nikukyu/v1/Nikukyu-Regular.eot");
+      src: url("https://fonts.gstatic.com/ea/nikukyu/v1/Nikukyu-Regular.eot?#iefix") format('embedded-opentype'), url("https://fonts.gstatic.com/ea/nikukyu/v1/Nikukyu-Regular.woff2") format('woff2'), url("https://fonts.gstatic.com/ea/nikukyu/v1/Nikukyu-Regular.woff") format('woff'), url("https://fonts.gstatic.com/ea/nikukyu/v1/Nikukyu-Regular.ttf") format('truetype');
+    }
+
+    .title {
+      font-family: 'Nikukyu';
+    }
+
+  </style>
+</head>
+
+<body>
+  <h1 class="title">スクマ</h1>
+
+  <p>
+    <span>Title:</span>
+    <input id="js-shared-title">
+  </p>
+
+  <p>
+    <span>Text:</span>
+    <textarea id="js-shared-text"></textarea>
+  </p>
+
+  <button id="js-create-button">Create Page</button>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js')
+    }
+
+    addEventListener('DOMContentLoaded', async () => {
+      const parsedUrl = new URL(location)
+      const queries = parsedUrl.searchParams
+
+      document.getElementById('js-shared-title').value = queries.get('title')
+      document.getElementById('js-shared-text').value = queries.get('text')
+    })
+
+    document.getElementById('js-create-button').addEventListener('click', () => {
+      const project = 'uknmr'
+      const title = document.getElementById('js-shared-title').value
+      const text = document.getElementById('js-shared-text').value
+      const urls = text.match(/http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w-\.\/?%&=]*)?/g)
+
+      if (!urls) {
+        return
       }
 
-      .title {
-        font-family: 'Nikukyu';
-      }
-    </style>
-  </head>
-  <body>
-    <h1 class="title">スクマ</h1>
+      const url = urls.pop()
+      const lines = [`[${url} ${title}]`];
+      const ogImage = document.querySelector('meta[property="og:image"]');
 
-    <p>
-      <span>Project:</span>
-      <input type="radio" id="js-target-project">
-    </p>
-
-    <p>
-      <span>Title:</span>
-      <input id="js-shared-title">
-    </p>
-
-    <p>
-      <span>Text:</span>
-      <textarea id="js-shared-text"></textarea>
-    </p>
-
-    <p>
-      <span>Url:</span>
-      <input id="js-shared-url">
-    </p>
-
-    <script>
-      if ('serviceWorker' in navigator) {
-        navigator
-          .serviceWorker
-          .register('sw.js')
+      if (ogImage) {
+        lines.push(`[${ogImage.content}]`);
       }
 
-      window.addEventListener('DOMContentLoaded', () => {
-        const parsedUrl = new URL(location)
-        const queries = parsedUrl.searchParams
+      lines.push('[スクマ]');
+      lines.push('');
 
-        document.getElementById('js-shared-title').value = queries.get('title')
-        document.getElementById('js-shared-text').value = queries.get('text')
-        document.getElementById('js-shared-url').value = queries.get('url')
-      })
-    </script>
-  </body>
+      const body = encodeURIComponent(lines.join('\n'));
+
+      open(
+        `https://scrapbox.io/${project}/` +
+        encodeURIComponent(title.trim()) +
+        '?body=' +
+        body,
+      )
+    })
+  </script>
+</body>
+
 </html>
