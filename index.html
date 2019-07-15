@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="manifest" href="manifest.json">
+
+    <title>スクマ！</title>
+
+    <style>
+      @font-face {
+        font-family: 'Nikukyu';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        unicode-range: U+30B9, U+30AF, U+30DE;
+        src: url("https://fonts.gstatic.com/ea/nikukyu/v1/Nikukyu-Regular.eot");
+        src: url("https://fonts.gstatic.com/ea/nikukyu/v1/Nikukyu-Regular.eot?#iefix") format('embedded-opentype'), url("https://fonts.gstatic.com/ea/nikukyu/v1/Nikukyu-Regular.woff2") format('woff2'), url("https://fonts.gstatic.com/ea/nikukyu/v1/Nikukyu-Regular.woff") format('woff'), url("https://fonts.gstatic.com/ea/nikukyu/v1/Nikukyu-Regular.ttf") format('truetype');
+      }
+
+      .title {
+        font-family: 'Nikukyu';
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="title">スクマ</h1>
+
+    <p>
+      <span>Project:</span>
+      <input type="radio" id="js-target-project">
+    </p>
+
+    <p>
+      <span>Title:</span>
+      <input id="js-shared-title">
+    </p>
+
+    <p>
+      <span>Text:</span>
+      <textarea id="js-shared-text"></textarea>
+    </p>
+
+    <p>
+      <span>Url:</span>
+      <input id="js-shared-url">
+    </p>
+
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator
+          .serviceWorker
+          .register('sw.js')
+      }
+
+      window.addEventListener('DOMContentLoaded', () => {
+        const parsedUrl = new URL(location)
+        const queries = parsedUrl.searchParams
+
+        document.getElementById('js-shared-title').value = queries.get('title')
+        document.getElementById('js-shared-text').value = queries.get('text')
+        document.getElementById('js-shared-url').value = queries.get('url')
+      })
+    </script>
+  </body>
+</html>
