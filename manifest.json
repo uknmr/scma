@@ -1,0 +1,27 @@
+{
+  "name": "スクマ",
+  "share_target": {
+    "action": "/scma/",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  },
+  "icons": [
+    {
+      "src": "/scma/images/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/scma/images/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/scma/",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "theme_color": "#6bab87"
+}
