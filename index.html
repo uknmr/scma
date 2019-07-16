@@ -36,7 +36,7 @@
       justify-content: center;
       margin: 1.25rem auto;
       background-color: #fff;
-      border-radius: 57% 43% 40% 60% / 59% 50% 50% 41% ;
+      border-radius: 57% 43% 40% 60% / 59% 50% 50% 41%;
       width: 6rem;
       height: 6rem;
       font-family: 'Nikukyu';
@@ -96,7 +96,6 @@
 
 <body>
   <h1 class="title">スクマ</h1>
-
   <p class="field-group">
     <span>ページ名:</span>
     <input id="js-shared-title">
@@ -135,17 +134,16 @@
       }
 
       const url = urls.pop()
-      const lines = [`[${url} ${title}]`];
-      const ogImage = document.querySelector('meta[property="og:image"]');
+      const lines = [`[${url} ${title}]`]
+      lines.push('[スクマ]')
 
-      if (ogImage) {
-        lines.push(`[${ogImage.content}]`);
+      if (text) {
+        lines.push(text.replace(new RegExp(url, 'g'), ''))
       }
 
-      lines.push('[スクマ]');
-      lines.push('');
+      lines.push('')
 
-      const body = encodeURIComponent(lines.join('\n'));
+      const body = encodeURIComponent(lines.join('\n'))
 
       open(
         `https://scrapbox.io/${project}/` +
