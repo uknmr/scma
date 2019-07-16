@@ -21,8 +21,74 @@
       src: url("https://fonts.gstatic.com/ea/nikukyu/v1/Nikukyu-Regular.eot?#iefix") format('embedded-opentype'), url("https://fonts.gstatic.com/ea/nikukyu/v1/Nikukyu-Regular.woff2") format('woff2'), url("https://fonts.gstatic.com/ea/nikukyu/v1/Nikukyu-Regular.woff") format('woff'), url("https://fonts.gstatic.com/ea/nikukyu/v1/Nikukyu-Regular.ttf") format('truetype');
     }
 
+    html {
+      line-height: 1.5;
+    }
+
+    body {
+      margin: 0;
+      background-color: #efefef;
+    }
+
     .title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 1.25rem auto;
+      background-color: #fff;
+      border-radius: 57% 43% 40% 60% / 59% 50% 50% 41% ;
+      width: 6rem;
+      height: 6rem;
       font-family: 'Nikukyu';
+      font-size: 1.5rem;
+      line-height: 1;
+      text-align: center;
+    }
+
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      margin: 1rem 0.5rem;
+      font-weight: 700;
+    }
+
+    .field-group span {
+      margin-right: 0.25rem;
+      padding-left: 1rem;
+      font-size: 0.875rem;
+      color: #6d6d6d;
+    }
+
+    .field-group input,
+    .field-group textarea {
+      resize: none;
+      flex-grow: 1;
+      margin-top: 0.25rem;
+      border: none;
+      border-left: 0.125rem solid #6bab87;
+      border-radius: 0.125rem;
+      padding: 1rem;
+      font-size: 1rem;
+      line-height: inherit;
+      color: #454545;
+    }
+
+    .field-group input {
+      letter-spacing: -0.05rem;
+    }
+
+    .field-group textarea {
+      height: 15rem;
+    }
+
+    button {
+      background-color: #6bab87;
+      border: 1px solid #3a605f;
+      border-radius: 0.125rem;
+      padding: 1rem;
+      width: calc(100vw - 1rem);
+      font-family: 'Nikukyu';
+      font-size: 1.5rem;
     }
 
   </style>
@@ -31,17 +97,19 @@
 <body>
   <h1 class="title">スクマ</h1>
 
-  <p>
-    <span>Title:</span>
+  <p class="field-group">
+    <span>ページ名:</span>
     <input id="js-shared-title">
   </p>
 
-  <p>
-    <span>Text:</span>
+  <p class="field-group">
+    <span>本文:</span>
     <textarea id="js-shared-text"></textarea>
   </p>
 
-  <button id="js-create-button">Create Page</button>
+  <p class="field-group">
+    <button id="js-create-button">クスクス</button>
+  </p>
 
   <script>
     if ('serviceWorker' in navigator) {
