@@ -16,8 +16,13 @@ html {
 
 body {
   margin: 0;
-  background-color: #efefef;
-  color: #454545;
+  background-color: #f7fafc;
+  color: #4a5568;
+}
+
+:focus {
+  outline: none;
+  box-shadow: 0 0 3px 2px #38a169;
 }
 
 .title {
@@ -26,11 +31,13 @@ body {
   justify-content: center;
   margin: 1.25rem auto;
   background-color: #fff;
+  border: 1px solid #edf2f7;
   border-radius: 57% 43% 40% 60% / 59% 50% 50% 41%;
   width: 6rem;
   height: 6rem;
   font-family: 'Nikukyu';
   font-size: 1.5rem;
+  color: #1a202c;
   line-height: 1;
   text-align: center;
 }
@@ -44,7 +51,7 @@ body {
   padding-left: 1rem;
   font-size: 0.875rem;
   font-weight: 700;
-  color: #6d6d6d;
+  color: #718096;
 }
 
 .flex-column {
@@ -58,7 +65,7 @@ body {
   flex-grow: 1;
   margin-top: 0.25rem;
   border: none;
-  border-left: 0.125rem solid #6bab87;
+  border: 1px solid #edf2f7;
   border-radius: 0.125rem;
   padding: 1rem;
   font-size: 1rem;
@@ -83,25 +90,29 @@ body {
 
 .form-checkbox {
   -webkit-appearance: none;
-  background-color: #fff;
+  background-color: white;
+  border: 1px solid #edf2f7;
   border-radius: 0.125rem;
   vertical-align: middle;
   width: 1.5rem;
   height: 1.5rem;
+  color: #38a169;
 }
 
 .form-checkbox:checked {
-  background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='rgb(107,171,135)' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M5.707 7.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4a1 1 0 0 0-1.414-1.414L7 8.586 5.707 7.293z'/%3e%3c/svg%3e");
+  background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M5.707 7.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4a1 1 0 0 0-1.414-1.414L7 8.586 5.707 7.293z'/%3e%3c/svg%3e");
+  background-color: currentColor;
 }
 
 .form-button {
-  background-color: #6bab87;
-  border: 1px solid #3a605f;
+  background-color: #38a169;
+  border: none;
   border-radius: 0.125rem;
   padding: 1rem;
   width: calc(100vw - 1rem);
   font-family: 'Nikukyu';
   font-size: 1.5rem;
+  color: #1a202c;
 }
 
 .align-center {
