@@ -7,9 +7,11 @@ class ShareTarget {
     const parsedUrl = new URL(location)
     this.queries = parsedUrl.searchParams
 
-    this.$inputProjectId = document.getElementById('js-shared-projectId')
-    this.$inputTitle = document.getElementById('js-shared-title')
-    this.$inputText = document.getElementById('js-shared-text')
+    this.$inputProjectId = document.getElementById(
+      env.SELECTOR_INPUT_PROJECT_ID,
+    )
+    this.$inputTitle = document.getElementById(env.SELECTOR_INPUT_TITLE)
+    this.$inputText = document.getElementById(env.SELECTOR_INPUT_TEXT)
   }
 
   setInputValue() {

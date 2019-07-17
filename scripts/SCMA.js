@@ -2,10 +2,12 @@ import env from './env.js'
 
 class SCMA {
   constructor() {
-    this.$inputProjectId = document.getElementById('js-shared-projectId')
-    this.$inputTitle = document.getElementById('js-shared-title')
-    this.$inputText = document.getElementById('js-shared-text')
-    this.$submitButton = document.getElementById('js-create-button')
+    this.$inputProjectId = document.getElementById(
+      env.SELECTOR_INPUT_PROJECT_ID,
+    )
+    this.$inputTitle = document.getElementById(env.SELECTOR_INPUT_TITLE)
+    this.$inputText = document.getElementById(env.SELECTOR_INPUT_TEXT)
+    this.$submitButton = document.getElementById(env.SELECTOR_CREATE_BUTTON)
   }
 
   addOnClick() {
