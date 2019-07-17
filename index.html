@@ -92,6 +92,8 @@
     }
 
   </style>
+
+  <script type="module" src="./scripts/main.js"></script>
 </head>
 
 <body>
@@ -109,50 +111,6 @@
   <p class="field-group">
     <button id="js-create-button">クスクス</button>
   </p>
-
-  <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('sw.js')
-    }
-
-    addEventListener('DOMContentLoaded', async () => {
-      const parsedUrl = new URL(location)
-      const queries = parsedUrl.searchParams
-
-      document.getElementById('js-shared-title').value = queries.get('title')
-      document.getElementById('js-shared-text').value = queries.get('text')
-    })
-
-    document.getElementById('js-create-button').addEventListener('click', () => {
-      const project = 'uknmr'
-      const title = document.getElementById('js-shared-title').value
-      const text = document.getElementById('js-shared-text').value
-      const urls = text.match(/http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w-\.\/?%&=]*)?/g)
-
-      if (!urls) {
-        return
-      }
-
-      const url = urls.pop()
-      const lines = [`[${url} ${title}]`]
-      lines.push('[スクマ]')
-
-      if (text) {
-        lines.push(text.replace(new RegExp(url, 'g'), ''))
-      }
-
-      lines.push('')
-
-      const body = encodeURIComponent(lines.join('\n'))
-
-      open(
-        `https://scrapbox.io/${project}/` +
-        encodeURIComponent(title.trim()) +
-        '?body=' +
-        body,
-      )
-    })
-  </script>
 </body>
 
 </html>
