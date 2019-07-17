@@ -28,6 +28,7 @@
     body {
       margin: 0;
       background-color: #efefef;
+      color: #454545;
     }
 
     .title {
@@ -45,22 +46,25 @@
       text-align: center;
     }
 
-    .field-group {
-      display: flex;
-      flex-direction: column;
+    .form-block {
       margin: 1rem 0.5rem;
-      font-weight: 700;
     }
 
-    .field-group span {
+    .form-label {
       margin-right: 0.25rem;
       padding-left: 1rem;
       font-size: 0.875rem;
+      font-weight: 700;
       color: #6d6d6d;
     }
 
-    .field-group input,
-    .field-group textarea {
+    .flex-column {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-input,
+    .form-textarea {
       resize: none;
       flex-grow: 1;
       margin-top: 0.25rem;
@@ -70,18 +74,38 @@
       padding: 1rem;
       font-size: 1rem;
       line-height: inherit;
-      color: #454545;
+      color: inherit;
     }
 
-    .field-group input {
+    .form-input.--title {
       letter-spacing: -0.05rem;
     }
 
-    .field-group textarea {
+    .form-textarea {
       height: 15rem;
     }
 
-    button {
+    .form-checkbox-area {
+      display: block;
+      margin: -0.5rem auto;
+      padding: 0.5rem 0;
+      font-size: 0.875rem;
+    }
+
+    .form-checkbox {
+      -webkit-appearance: none;
+      background-color: #fff;
+      border-radius: 0.125rem;
+      vertical-align: middle;
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+
+    .form-checkbox:checked {
+      background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='rgb(107,171,135)' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M5.707 7.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4a1 1 0 0 0-1.414-1.414L7 8.586 5.707 7.293z'/%3e%3c/svg%3e");
+    }
+
+    .form-button {
       background-color: #6bab87;
       border: 1px solid #3a605f;
       border-radius: 0.125rem;
@@ -89,6 +113,10 @@
       width: calc(100vw - 1rem);
       font-family: 'Nikukyu';
       font-size: 1.5rem;
+    }
+
+    .align-center {
+      text-align: center;
     }
 
   </style>
@@ -99,23 +127,36 @@
 <body>
   <h1 class="title">スクマ</h1>
 
-  <p class="field-group">
-    <span>プロジェクトID:</span>
-    <input id="js-shared-projectId">
+  <p class="form-block">
+    <label class="flex-column">
+      <span class="form-label">プロジェクトID:</span>
+      <input class="form-input" id="js-shared-projectId">
+    </label>
   </p>
 
-  <p class="field-group">
-    <span>ページ名:</span>
-    <input id="js-shared-title">
+  <p class="form-block">
+    <label class="flex-column">
+      <span class="form-label">ページ名:</span>
+      <input class="form-input --title" id="js-shared-title">
+    </label>
   </p>
 
-  <p class="field-group">
-    <span>本文:</span>
-    <textarea id="js-shared-text"></textarea>
+  <p class="form-block">
+    <label class="flex-column">
+      <span class="form-label">本文:</span>
+      <textarea class="form-textarea" id="js-shared-text"></textarea>
+    </label>
   </p>
 
-  <p class="field-group">
-    <button id="js-create-button">クスクス</button>
+  <p class="form-block align-center">
+    <label class="form-checkbox-area">
+      <input type="checkbox" class="form-checkbox" id="js-checkbox-scma" checked>
+      <span>スクマ？</span>
+    </label>
+  </p>
+
+  <p class="form-block">
+    <button class="form-button" id="js-create-button">クスクス</button>
   </p>
 </body>
 

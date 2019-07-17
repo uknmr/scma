@@ -7,6 +7,7 @@ class SCMA {
     )
     this.$inputTitle = document.getElementById(env.SELECTOR_INPUT_TITLE)
     this.$inputText = document.getElementById(env.SELECTOR_INPUT_TEXT)
+    this.$checkbox = document.getElementById(env.SELECTOR_CHECKBOX)
     this.$submitButton = document.getElementById(env.SELECTOR_CREATE_BUTTON)
   }
 
@@ -51,7 +52,10 @@ class SCMA {
 
   generateBody({ title, text, url }) {
     const lines = [`[${url} ${title}]`]
-    lines.push('[スクマ]')
+
+    if (this.$checkbox.checked) {
+      lines.push('[スクマ]')
+    }
 
     if (text) {
       lines.push(text.replace(new RegExp(url, 'g'), '').trim())
