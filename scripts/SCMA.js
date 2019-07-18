@@ -25,14 +25,18 @@ class SCMA {
 
       this.setProjectId(projectId)
 
-      open(`https://scrapbox.io/${projectId}/${title}?body=${body}`)
+      open(
+        `https://scrapbox.io/${projectId}/${encodeURIComponent(
+          title,
+        )}?body=${body}`,
+      )
     })
   }
 
   getInputValue() {
     return {
       projectId: this.$inputProjectId.value,
-      title: encodeURIComponent(this.$inputTitle.value.trim()),
+      title: this.$inputTitle.value.trim(),
       text: this.$inputText.value,
     }
   }
