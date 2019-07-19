@@ -50,7 +50,7 @@ class SCMA {
   }
 
   extractURLs(text) {
-    const regexp = /http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w-\.\/?%&=]*)?/g
+    const regexp = /http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w-\.\/?%&=@]*)?/g
     return text.match(regexp)
   }
 
